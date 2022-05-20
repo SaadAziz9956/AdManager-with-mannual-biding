@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">AdModule</string>
+
+    // AdMob Ids
+    <string name="admob_app_id">@string/AdMob_AppId</string>
+    <string name="admob_banner_id">@string/Admob_BannerId</string>
+    <string name="admob_native_id">@string/Admob_NativeId</string>
+    <string name="admob_interstitial_id">@string/Admob_InterstitialId</string>
+
+    // Facebook Ids
+    <string name="fb_interstitial_id">@string/Fb_InterstitialId</string>
+    <string name="fb_native_advanced_id">@string/Fb_NativeAdvancedId</string>
+    <string name="fb_native_banner_id">@string/Fb_Native_BannerId</string>
+    <string name="fb_banner_id">@string/Fb_BannerId</string>
+
+
+    <string name="ad">Ad</string>
+    <string name="null_description">null</string>
+    <string name="todo">TODO</string>
+
+
+</resources>

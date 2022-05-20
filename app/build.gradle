@@ -1,0 +1,132 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp' version '1.6.10-1.0.4'
+}
+
+kotlin {
+    sourceSets {
+        debug {
+            kotlin.srcDir("build/generated/ksp/debug/kotlin")
+        }
+        release {
+            kotlin.srcDir("build/generated/ksp/release/kotlin")
+        }
+    }
+}
+
+android {
+    compileSdk 32
+
+    viewBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        applicationId "com.example.admodule"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+
+        release {
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            resValue 'string', 'AdMob_AppId', '""'
+            resValue 'string', 'Admob_BannerId', '""'
+            resValue 'string', 'Admob_NativeId', '""'
+            resValue 'string', 'Admob_InterstitialId', '""'
+
+            resValue 'string', 'Fb_InterstitialId', ''
+            resValue 'string', 'Fb_NativeAdvancedId', ''
+            resValue 'string', 'Fb_Native_BannerId', '""'
+            resValue 'string', 'Fb_BannerId', '""'
+
+        }
+
+        debug {
+
+            resValue 'string', 'AdMob_AppId', '"ca-app-pub-3940256099942544~3347511713"'
+            resValue 'string', 'Admob_BannerId', '"ca-app-pub-3940256099942544/6300978111"'
+            resValue 'string', 'Admob_NativeId', '"ca-app-pub-3940256099942544/2247696111"'
+            resValue 'string', 'Admob_InterstitialId', '"ca-app-pub-3940256099942544/1033173711"'
+
+            resValue 'string', 'Fb_InterstitialId', 'IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID'
+            resValue 'string', 'Fb_NativeAdvancedId', 'IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID'
+            resValue 'string', 'Fb_Native_BannerId', '"IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID"'
+            resValue 'string', 'Fb_BannerId', '"IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID"'
+
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation "androidx.constraintlayout:constraintlayout:2.1.3"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+    implementation 'androidx.activity:activity-compose:1.4.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    // AdMob
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
+
+    // Facebook Ads
+    implementation "com.facebook.android:audience-network-sdk:6.10.0"
+
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:2.40.5"
+    kapt "com.google.dagger:hilt-android-compiler:2.40.5"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+}
